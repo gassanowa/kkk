@@ -170,7 +170,7 @@ class AI(Player):
             if d not in self.enemy.busy and not self.enemy.out(d):
                 break
         sleep(0.1 * randint(15, 50))   
-        print(f'Ход компьютера: {d.x + 1} {d.y + 1}')
+        print(f'Ход противника: {d.x + 1} {d.y + 1}')
         return d
 
 
@@ -224,19 +224,14 @@ class Game:
 
     @staticmethod
     def greet():
-        print('-------------------')
-        print('  Приветсвуем вас  ')
-        print('      в игре       ')
-        print('    морской бой    ')
-        print('-------------------')
+        print('Приветсвуем вас в игре морской бой')
         print(' формат ввода: x y ')
         print(' x - номер строки  ')
         print(' y - номер столбца ')
-        print('-------------------')
 
     def print_boards(self):  # вывод двух досок рядом по горизонтали
         print('-' * self.size * 10)
-        print('Ваша доска:'.ljust((self.size + 1) * 4 - 1) + ' ' * self.size + 'Доска компьютера:')
+        print('Ваша доска:'.ljust((self.size + 1) * 4 - 1) + ' ' * self.size + 'Доска противника:')
         for s1, s2 in zip(self.pl.board.__str__().split('\n'), self.ai.board.__str__().split('\n')):
             print(s1 + ' ' * self.size + s2)
 
@@ -248,7 +243,7 @@ class Game:
                 print('Ваш ход!')
                 repeat = self.pl.move()
             else:
-                print('Ходит компьютер!')
+                print('Ходит противник!')
                 repeat = self.ai.move()
             if repeat:
                 step -= 1
@@ -259,7 +254,7 @@ class Game:
                 break
             if self.pl.board.defeat():
                 self.print_boards()
-                print('Компьютер выиграл!')
+                print('Противник победил!')
                 break
             step += 1
 
